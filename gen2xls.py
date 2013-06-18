@@ -13,15 +13,21 @@ from ctypes import *
 ##########################################################################################
 ##########################################################################################
 #----------------------------------------------------------------
-# LAURA'S FORMAT: get header row and split into columns and return start pos. of each
 def get_headers(line):
+    """
+        LAURA'S FORMAT: get header row and split into columns and return start pos. of each
+        06/18/2013 - added if statements to prevent blank fields
+    """
     tmp_header = []
     tmp_list = line.split('          ')
     for i in tmp_list:
-        tmp_header.append(i.strip())
+        if i != '':
+            tmp_header.append(i.strip())
     header_lengths = []
     for e in tmp_header:
-        header_lengths.append(line.find(e))
+        fnd_temp = line.find(e)
+        if fnd_temp != 0:
+            header_lengths.append(line.find(e))
     return tmp_header,header_lengths
 #----------------------------------------------------------------
 # LAURA'S FORMAT: get data rows and split into columns
