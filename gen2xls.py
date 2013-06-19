@@ -1,7 +1,5 @@
 # THIS PARM IS SET UP TO WORK WITH SERGEI'S GENCOUNT, NOT THE ORIGINAL GENCOUNT
-""" Things to do:
-    1. 
-    """
+
 import win32com.client as win32
 win32c = win32.constants
 import sys
@@ -162,7 +160,8 @@ def get_s_sheets(file,report_date,report_title):
 def get_gen_type(file):
     s = mmap.mmap(file.fileno(), 0, access=mmap.ACCESS_READ)   
     check = s.find('\x0C')  #look for first newpage
-    if check == -1: return check
+    #if check == -1: return check
+    if check == -1: return ['laur']
     if check < 100:  #this is an arbitrary number that works for now. 
         file_type = 'serg'
         t = s.read(check - 1) 
