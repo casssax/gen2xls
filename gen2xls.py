@@ -7,6 +7,7 @@ import mmap
 import itertools
 import re
 import traceback
+import os
 from ctypes import *
 ##########################################################################################
 ##########################################################################################
@@ -177,6 +178,8 @@ def get_gen_type(file):
 #------------------------------------------------------------------------------
 # populate excel workbook
 def make_sheets(sheets,fname):
+    # get script path
+    script_path = os.path.dirname(os.path.abspath(__file__))
     excel = win32.gencache.EnsureDispatch('Excel.Application')
     wb = excel.Workbooks.Add()
     sheet_names = []
@@ -226,7 +229,7 @@ def make_sheets(sheets,fname):
         ws.Cells(7,2).Font.Size = 14
         ws.Cells(7,2).Font.Bold = True
         #ws.Shapes.AddPicture("C:\\DATA_SAVE\\excel\\LSC_LOGO.bmp",0,1,0,0,50,50)
-        ws.Shapes.AddPicture("C:\\DATA_SAVE\\excel\\logo3.bmp",0,1,0,0,50,50)
+        ws.Shapes.AddPicture(script_path + "\\logo3.bmp",0,1,0,0,50,50)
         ws.Cells(1,2).Value = '  List Services Corporation'
         ws.Cells(1,2).WrapText = False
         ws.Cells(1,2).Font.Size = 12
